@@ -1,27 +1,38 @@
+'''1. Добавить
+2. Посмотреть список
+3. Удалить
+4. Сохранить задачи
+5. Загрузить задачи
+6. Очистить список
+7. Выход ''' 
 tasks = []
 
-def add_task():
-    return tasks.append()
+
+def save_tasks():
+    pass
+
+def load_tasks():
+    pass
+
+def clean_tasks():
+    pass
     
-    
-def show_tasks():
-    for item in tasks:
-        print(item)
-    
-    
-def  delete_task():
-    return tasks.remove()
-    
+def exit_tasks():
+    pass 
+
 while True:
     
     print("1. Добавить")
     print("2. Посмотреть список")
     print("3. Удалить")
-    print("4. Выход")
+    print("4. Сохранить задачи")
+    print("5. Загрузить задачи")
+    print("6. Очистить список")
+    print("7. Выход")
     
     choice = input("Выбрать задачу: ")
     
-    if choice == "4":
+    if choice == "7":
         print("Выход")
         break
     
@@ -47,3 +58,36 @@ while True:
             print("Запись удалена !")
         else:
             print("Такой записи нет !")
+            
+    elif choice == "4":
+        if not tasks:
+            print("Список пуст !")
+            
+        else:
+            with open("tasks.txt", 'w') as file:
+                for item in tasks:
+                    file.write(item)
+            print("Сохранено")
+            
+            continue
+        
+    elif choice == "5":
+        try:
+            with open("tasks.txt", "r") as file:
+                tasks = [task.strip() for task in file.readlines()]
+                
+            print("Задачи загружены")
+        except FileNotFoundError:
+            print("Ошибка") 
+            
+    elif choice == "6":
+        if not tasks:
+            print("Список пуст !")
+        else:
+            tasks.clear()
+            print("Список очищен")
+            
+        continue
+        
+        
+                
